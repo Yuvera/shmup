@@ -15,6 +15,7 @@ namespace shmup
         Sprite backgroundSprite;
         PlayerSprite PlayerSprite;
 
+        // this is a test
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
