@@ -1,0 +1,4 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/law8/source/repos/shmup/shmup/Content/background.png","C:/Users/law8/source/repos/shmup/shmup/Content/bin/DesktopGL/Content/background.xnb","TextureProcessor","Texture2DContent",689365,1440085,0.2608599
+"C:/Users/law8/source/repos/shmup/shmup/Content/missile.png","C:/Users/law8/source/repos/shmup/shmup/Content/bin/DesktopGL/Content/missile.xnb","TextureProcessor","Texture2DContent",9534,32853,0.2110955
+"C:/Users/law8/source/repos/shmup/shmup/Content/saucer.png","C:/Users/law8/source/repos/shmup/shmup/Content/bin/DesktopGL/Content/saucer.xnb","TextureProcessor","Texture2DContent",8429,36949,0.2115754
