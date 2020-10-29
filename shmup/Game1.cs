@@ -4,8 +4,11 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 
-// Add a Missle class, as a child of Sprite class.
-// Use List<Missiles> to reference multiple missiles and iterate over them
+// simple collision detection
+// player lives / death
+// counter
+// UI (font, imported)
+
 
 namespace shmup
 {
@@ -14,12 +17,16 @@ namespace shmup
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        Texture2D saucerTxr, missileTxr, backgroundTxr;
+        Texture2D saucerTxr, missileTxr, backgroundTxr, bgDeathTxr;
         Point screenSize = new Point(800, 450);
+        float spawnCooldown = 2;
 
+        Sprite backgroundDeath;
         Sprite backgroundSprite;
         PlayerSprite PlayerSprite;
-        List<MissileSprite> missiles = new List<MissileSprite>();
+        List<MissileSprite> missileList = new List<MissileSprite>();
+        SpriteFont uiFont;
+        SpriteFont bigFont;
 
         // this is a test comment
         public Game1()
@@ -45,8 +52,11 @@ namespace shmup
             saucerTxr = Content.Load<Texture2D>("saucer");
             missileTxr = Content.Load<Texture2D>("missile");
             backgroundTxr = Content.Load<Texture2D>("background");
-
+            uiFont = Content.Load<SpriteFont>("UI Font");
+            bigFont = Content.Load<SpriteFont>("Big Font");
+            bgDeathTxr = Content.Load<Texture2D>("backgroundDeath");
             backgroundSprite = new Sprite(backgroundTxr, new Vector2(0, 0));
+            backgroundDeath = new Sprite(bgDeathTxr, new Vector2(0, 0));
             PlayerSprite = new PlayerSprite(saucerTxr, new Vector2(screenSize.X/6, screenSize.Y/2));
             //testMissile = new MissileSprite(missileTxr, new Vector2(340,120));
         }
@@ -57,15 +67,38 @@ namespace shmup
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            if (missiles.Count < 5) missiles.Add(new MissileSprite(
-                missileTxr, 
-                new Vector2(screenSize.X, RNG.Next(0, screenSize.Y - missileTxr.Height))
-                ));
+            if (spawnCooldown > 0)
+            {
+                spawnCooldown -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+            }
 
-            PlayerSprite.Update(gameTime, screenSize);
+            else if (PlayerSprite.playerLives > 0 && missileList.Count < 5)
+            {
+                missileList.Add(new MissileSprite(
+                    missileTxr, 
+                    new Vector2(screenSize.X, RNG.Next(0, screenSize.Y - missileTxr.Height))
+                   ));
 
-            foreach (MissileSprite missile in missiles) missile.Update(gameTime, screenSize);
-           // testMissile.Update(gameTime, screenSize);
+                spawnCooldown = (float)(RNG.NextDouble() * 0.8) + 0.2f;
+            }
+
+            if (PlayerSprite.playerLives > 0) PlayerSprite.Update(gameTime, screenSize);
+
+            foreach (MissileSprite missile in missileList)
+            {
+                missile.Update(gameTime, screenSize);
+
+                if (PlayerSprite.playerLives > 0 && PlayerSprite.isColliding(missile))
+                {
+                    missile.dead = true;
+                    PlayerSprite.playerLives--;
+
+                }
+            }
+
+            missileList.RemoveAll(missile => missile.dead);
+
+            // testMissile.Update(gameTime, screenSize);
 
             base.Update(gameTime);
         }
@@ -77,14 +110,22 @@ namespace shmup
             _spriteBatch.Begin();
 
             backgroundSprite.Draw(_spriteBatch);
-            PlayerSprite.Draw(_spriteBatch);
-          
-            foreach (MissileSprite missile in missiles)
+            if (PlayerSprite.playerLives > 0) PlayerSprite.Draw(_spriteBatch);
+
+            foreach (MissileSprite missile in missileList)
             {
                 missile.Draw(_spriteBatch);
             }
 
+            _spriteBatch.DrawString(uiFont, ("Lives: " + PlayerSprite.playerLives), new Vector2(10, 10), Color.White);
             //testMissile.Draw(_spriteBatch);
+
+            if (PlayerSprite.playerLives <=0)
+            {
+                Vector2 textSize = bigFont.MeasureString("GAME OVER");
+                backgroundDeath.Draw(_spriteBatch);
+                _spriteBatch.DrawString(bigFont, "GAME OVER", new Vector2((screenSize.X / 2) - (textSize.X /2), (screenSize.Y / 2) - (textSize.Y / 2)), Color.White);
+            }
 
             _spriteBatch.End();
 

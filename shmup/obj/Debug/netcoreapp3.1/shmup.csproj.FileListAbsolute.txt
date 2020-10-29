@@ -24,3 +24,7 @@ C:\Users\law8\source\repos\shmup\shmup\obj\Debug\netcoreapp3.1\shmup.dll
 C:\Users\law8\source\repos\shmup\shmup\obj\Debug\netcoreapp3.1\shmup.pdb
 C:\Users\law8\source\repos\shmup\shmup\obj\Debug\netcoreapp3.1\shmup.genruntimeconfig.cache
 C:\Users\law8\source\repos\shmup\shmup\bin\Debug\netcoreapp3.1\Content\background.xnb
+C:\Users\law8\source\repos\shmup\shmup\bin\Debug\netcoreapp3.1\Content\missile1.xnb
+C:\Users\law8\source\repos\shmup\shmup\bin\Debug\netcoreapp3.1\Content\UI Font.xnb
+C:\Users\law8\source\repos\shmup\shmup\bin\Debug\netcoreapp3.1\Content\Big Font.xnb
+C:\Users\law8\source\repos\shmup\shmup\bin\Debug\netcoreapp3.1\Content\backgroundDeath.xnb

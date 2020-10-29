@@ -1,4 +1,7 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/Users/law8/source/repos/shmup/shmup/Content/background.png","C:/Users/law8/source/repos/shmup/shmup/Content/bin/DesktopGL/Content/background.xnb","TextureProcessor","Texture2DContent",689365,1440085,0.2608599
-"C:/Users/law8/source/repos/shmup/shmup/Content/missile.png","C:/Users/law8/source/repos/shmup/shmup/Content/bin/DesktopGL/Content/missile.xnb","TextureProcessor","Texture2DContent",51619,208097,0.5687283
-"C:/Users/law8/source/repos/shmup/shmup/Content/saucer.png","C:/Users/law8/source/repos/shmup/shmup/Content/bin/DesktopGL/Content/saucer.xnb","TextureProcessor","Texture2DContent",8429,36949,0.2115754
+"C:/Users/law8/source/repos/shmup/shmup/Content/background.png","C:/Users/law8/source/repos/shmup/shmup/Content/bin/DesktopGL/Content/background.xnb","TextureProcessor","Texture2DContent",2822,1440085,0.3003046
+"C:/Users/law8/source/repos/shmup/shmup/Content/backgroundDeath.png","C:/Users/law8/source/repos/shmup/shmup/Content/bin/DesktopGL/Content/backgroundDeath.xnb","TextureProcessor","Texture2DContent",2487,1440085,0.2942221
+"C:/Users/law8/source/repos/shmup/shmup/Content/Big Font.spritefont","C:/Users/law8/source/repos/shmup/shmup/Content/bin/DesktopGL/Content/Big Font.xnb","FontDescriptionProcessor","SpriteFontContent",2008,136226,0.3700306
+"C:/Users/law8/source/repos/shmup/shmup/Content/missile.png","C:/Users/law8/source/repos/shmup/shmup/Content/bin/DesktopGL/Content/missile.xnb","TextureProcessor","Texture2DContent",2829,33941,0.0091323
+"C:/Users/law8/source/repos/shmup/shmup/Content/saucer.png","C:/Users/law8/source/repos/shmup/shmup/Content/bin/DesktopGL/Content/saucer.xnb","TextureProcessor","Texture2DContent",1114,20249,0.0022938
+"C:/Users/law8/source/repos/shmup/shmup/Content/UI Font.spritefont","C:/Users/law8/source/repos/shmup/shmup/Content/bin/DesktopGL/Content/UI Font.xnb","FontDescriptionProcessor","SpriteFontContent",2008,37922,0.43114
