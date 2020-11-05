@@ -28,3 +28,4 @@ C:\Users\law8\source\repos\shmup\shmup\bin\Debug\netcoreapp3.1\Content\missile1.
 C:\Users\law8\source\repos\shmup\shmup\bin\Debug\netcoreapp3.1\Content\UI Font.xnb
 C:\Users\law8\source\repos\shmup\shmup\bin\Debug\netcoreapp3.1\Content\Big Font.xnb
 C:\Users\law8\source\repos\shmup\shmup\bin\Debug\netcoreapp3.1\Content\backgroundDeath.xnb
+C:\Users\law8\source\repos\shmup\shmup\bin\Debug\netcoreapp3.1\Content\particle.xnb

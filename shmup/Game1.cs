@@ -17,7 +17,7 @@ namespace shmup
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        Texture2D saucerTxr, missileTxr, backgroundTxr, bgDeathTxr;
+        Texture2D saucerTxr, missileTxr, backgroundTxr, bgDeathTxr, particleTxr;
         Point screenSize = new Point(800, 450);
         float spawnCooldown = 2;
 
@@ -25,6 +25,7 @@ namespace shmup
         Sprite backgroundSprite;
         PlayerSprite PlayerSprite;
         List<MissileSprite> missileList = new List<MissileSprite>();
+        List<particleSprite> particleList = new List<particleSprite>();
         SpriteFont uiFont;
         SpriteFont bigFont;
 
@@ -52,6 +53,7 @@ namespace shmup
             saucerTxr = Content.Load<Texture2D>("saucer");
             missileTxr = Content.Load<Texture2D>("missile");
             backgroundTxr = Content.Load<Texture2D>("background");
+            particleTxr = Content.Load<Texture2D>("particle");
             uiFont = Content.Load<SpriteFont>("UI Font");
             bigFont = Content.Load<SpriteFont>("Big Font");
             bgDeathTxr = Content.Load<Texture2D>("backgroundDeath");
@@ -64,6 +66,7 @@ namespace shmup
         protected override void Update(GameTime gameTime)
         {
             Random RNG = new Random();
+
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
@@ -90,13 +93,18 @@ namespace shmup
 
                 if (PlayerSprite.playerLives > 0 && PlayerSprite.isColliding(missile))
                 {
+                    for(int i = 0; i < 16; i++) particleList.Add(new particleSprite(particleTxr, new Vector2(missile.spritePos.X + (missileTxr.Width / 2) - (particleTxr.Width / 2), missile.spritePos.Y + (missileTxr.Height / 2) - (particleTxr.Height / 2))));
+
                     missile.dead = true;
                     PlayerSprite.playerLives--;
 
                 }
             }
 
+            foreach (particleSprite particle in particleList) particle.Update(gameTime, screenSize);
+
             missileList.RemoveAll(missile => missile.dead);
+            particleList.RemoveAll(particle => particle.currentlife <= 0 );
 
             // testMissile.Update(gameTime, screenSize);
 
@@ -115,6 +123,11 @@ namespace shmup
             foreach (MissileSprite missile in missileList)
             {
                 missile.Draw(_spriteBatch);
+            }
+
+            foreach (particleSprite particle in particleList)
+            {
+                particle.Draw(_spriteBatch);
             }
 
             _spriteBatch.DrawString(uiFont, ("Lives: " + PlayerSprite.playerLives), new Vector2(10, 10), Color.White);
