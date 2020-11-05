@@ -5,13 +5,19 @@
   <Config />
   <SourceFiles>
     <File>C:/Users/law8/source/repos/shmup/shmup/Content/background.png</File>
+    <File>C:/Users/law8/source/repos/shmup/shmup/Content/backgroundDeath.png</File>
     <File>C:/Users/law8/source/repos/shmup/shmup/Content/Big Font.spritefont</File>
     <File>C:/Users/law8/source/repos/shmup/shmup/Content/missile.png</File>
-    <File>C:/Users/law8/source/repos/shmup/shmup/Content/missile1.png</File>
+    <File>C:/Users/law8/source/repos/shmup/shmup/Content/missileExplode.wav</File>
+    <File>C:/Users/law8/source/repos/shmup/shmup/Content/particle.png</File>
     <File>C:/Users/law8/source/repos/shmup/shmup/Content/saucer.png</File>
+    <File>C:/Users/law8/source/repos/shmup/shmup/Content/shipExplode.wav</File>
     <File>C:/Users/law8/source/repos/shmup/shmup/Content/UI Font.spritefont</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

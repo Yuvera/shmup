@@ -29,3 +29,7 @@ C:\Users\law8\source\repos\shmup\shmup\bin\Debug\netcoreapp3.1\Content\UI Font.x
 C:\Users\law8\source\repos\shmup\shmup\bin\Debug\netcoreapp3.1\Content\Big Font.xnb
 C:\Users\law8\source\repos\shmup\shmup\bin\Debug\netcoreapp3.1\Content\backgroundDeath.xnb
 C:\Users\law8\source\repos\shmup\shmup\bin\Debug\netcoreapp3.1\Content\particle.xnb
+C:\Users\law8\source\repos\shmup\shmup\bin\Debug\netcoreapp3.1\Content\missileExplode.xnb
+C:\Users\law8\source\repos\shmup\shmup\bin\Debug\netcoreapp3.1\Content\shipExplode.xnb
+C:\Users\law8\source\repos\shmup\shmup\bin\Debug\netcoreapp3.1\Content\music.xnb
+C:\Users\law8\source\repos\shmup\shmup\bin\Debug\netcoreapp3.1\Content\music.ogg

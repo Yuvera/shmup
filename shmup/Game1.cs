@@ -1,14 +1,18 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 
-// simple collision detection
-// player lives / death
-// counter
-// UI (font, imported)
+// bigger particles
+// particles when player dies
+// sound
+// missle accelleration
+//progression / timer
 
+//background music
 
 namespace shmup
 {
@@ -20,6 +24,7 @@ namespace shmup
         Texture2D saucerTxr, missileTxr, backgroundTxr, bgDeathTxr, particleTxr;
         Point screenSize = new Point(800, 450);
         float spawnCooldown = 2;
+        float playTime = 0;
 
         Sprite backgroundDeath;
         Sprite backgroundSprite;
@@ -28,6 +33,9 @@ namespace shmup
         List<particleSprite> particleList = new List<particleSprite>();
         SpriteFont uiFont;
         SpriteFont bigFont;
+        SoundEffect shipExplodeSnd;
+        SoundEffect missileExplodeSnd;
+        Song BGmusic;
 
         // this is a test comment
         public Game1()
@@ -60,6 +68,11 @@ namespace shmup
             backgroundSprite = new Sprite(backgroundTxr, new Vector2(0, 0));
             backgroundDeath = new Sprite(bgDeathTxr, new Vector2(0, 0));
             PlayerSprite = new PlayerSprite(saucerTxr, new Vector2(screenSize.X/6, screenSize.Y/2));
+            shipExplodeSnd = Content.Load<SoundEffect>("shipExplode");
+            missileExplodeSnd = Content.Load<SoundEffect>("missileExplode");
+            BGmusic = Content.Load<Song>("music");
+            MediaPlayer.IsRepeating = true;
+            MediaPlayer.Play(BGmusic);
             //testMissile = new MissileSprite(missileTxr, new Vector2(340,120));
         }
 
@@ -70,22 +83,29 @@ namespace shmup
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            
+
             if (spawnCooldown > 0)
             {
                 spawnCooldown -= (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
 
-            else if (PlayerSprite.playerLives > 0 && missileList.Count < 5)
+            else if (PlayerSprite.playerLives > 0 && missileList.Count < (Math.Min(playTime, 120f) / 120f) * 20000f + 200f)
             {
                 missileList.Add(new MissileSprite(
                     missileTxr, 
-                    new Vector2(screenSize.X, RNG.Next(0, screenSize.Y - missileTxr.Height))
+                    new Vector2(screenSize.X, RNG.Next(0, screenSize.Y - missileTxr.Height)),
+                    (Math.Min(playTime, 120f)/120f) * 20000f + 200f
                    ));
 
                 spawnCooldown = (float)(RNG.NextDouble() * 0.8) + 0.2f;
             }
 
-            if (PlayerSprite.playerLives > 0) PlayerSprite.Update(gameTime, screenSize);
+            if (PlayerSprite.playerLives > 0)
+            {
+                PlayerSprite.Update(gameTime, screenSize);
+                playTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            }
 
             foreach (MissileSprite missile in missileList)
             {
@@ -93,10 +113,18 @@ namespace shmup
 
                 if (PlayerSprite.playerLives > 0 && PlayerSprite.isColliding(missile))
                 {
-                    for(int i = 0; i < 16; i++) particleList.Add(new particleSprite(particleTxr, new Vector2(missile.spritePos.X + (missileTxr.Width / 2) - (particleTxr.Width / 2), missile.spritePos.Y + (missileTxr.Height / 2) - (particleTxr.Height / 2))));
+                    for(int i = 0; i < 16; i++) particleList.Add(new particleSprite(particleTxr, new Vector2(PlayerSprite.spritePos.X + (missileTxr.Width / 2) - (particleTxr.Width / 2), PlayerSprite.spritePos.Y + (missileTxr.Height / 2) - (particleTxr.Height / 2))));
 
                     missile.dead = true;
                     PlayerSprite.playerLives--;
+                    missileExplodeSnd.Play();
+
+                    if (PlayerSprite.playerLives == 0)
+                    {
+                        for (int i = 0; i < 16; i++) particleList.Add(new particleSprite(particleTxr, new Vector2(PlayerSprite.spritePos.X + (missileTxr.Width / 2) - (particleTxr.Width / 2), PlayerSprite.spritePos.Y + (missileTxr.Height / 2) - (particleTxr.Height / 2))));
+                        shipExplodeSnd.Play();
+                        MediaPlayer.Stop();
+                    }
 
                 }
             }
@@ -113,7 +141,6 @@ namespace shmup
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
 
             _spriteBatch.Begin();
 
@@ -130,7 +157,34 @@ namespace shmup
                 particle.Draw(_spriteBatch);
             }
 
-            _spriteBatch.DrawString(uiFont, ("Lives: " + PlayerSprite.playerLives), new Vector2(10, 10), Color.White);
+            _spriteBatch.DrawString(
+                uiFont, 
+                "Lives: " + PlayerSprite.playerLives,
+                new Vector2(14, 14), 
+                Color.Black
+                );
+
+            _spriteBatch.DrawString(
+           uiFont,
+           "Lives: " + PlayerSprite.playerLives,
+           new Vector2(10, 10),
+           Color.White
+           );
+
+            _spriteBatch.DrawString(
+                uiFont,
+                "Time: " + Math.Round(playTime),
+                new Vector2(114, 14),
+                Color.Black
+                );
+
+            _spriteBatch.DrawString(
+           uiFont,
+           "Time: " + Math.Round(playTime),
+           new Vector2(110, 10),
+           Color.White
+           );
+
             //testMissile.Draw(_spriteBatch);
 
             if (PlayerSprite.playerLives <=0)

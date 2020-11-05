@@ -1,7 +1,10 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/Users/law8/source/repos/shmup/shmup/Content/background.png","C:/Users/law8/source/repos/shmup/shmup/Content/bin/DesktopGL/background.xnb","TextureProcessor","Texture2DContent",689365,1440085,1.2885734
+"C:/Users/law8/source/repos/shmup/shmup/Content/background.png","C:/Users/law8/source/repos/shmup/shmup/Content/bin/DesktopGL/background.xnb","TextureProcessor","Texture2DContent",2822,1440085,1.0848081
+"C:/Users/law8/source/repos/shmup/shmup/Content/backgroundDeath.png","C:/Users/law8/source/repos/shmup/shmup/Content/bin/DesktopGL/backgroundDeath.xnb","TextureProcessor","Texture2DContent",2487,1440085,0.3633003
 "C:/Users/law8/source/repos/shmup/shmup/Content/Big Font.spritefont","C:/Users/law8/source/repos/shmup/shmup/Content/bin/DesktopGL/Big Font.xnb","FontDescriptionProcessor","SpriteFontContent",2008,136226,0.3361016
-"C:/Users/law8/source/repos/shmup/shmup/Content/missile.png","C:/Users/law8/source/repos/shmup/shmup/Content/bin/DesktopGL/missile.xnb","TextureProcessor","Texture2DContent",20768,45557,0.007762
-"C:/Users/law8/source/repos/shmup/shmup/Content/missile1.png","C:/Users/law8/source/repos/shmup/shmup/Content/bin/DesktopGL/missile1.xnb","TextureProcessor","Texture2DContent",8379,11453,0.0031427
-"C:/Users/law8/source/repos/shmup/shmup/Content/saucer.png","C:/Users/law8/source/repos/shmup/shmup/Content/bin/DesktopGL/saucer.xnb","TextureProcessor","Texture2DContent",7277,26497,0.0608732
+"C:/Users/law8/source/repos/shmup/shmup/Content/missile.png","C:/Users/law8/source/repos/shmup/shmup/Content/bin/DesktopGL/missile.xnb","TextureProcessor","Texture2DContent",2829,33941,0.0765119
+"C:/Users/law8/source/repos/shmup/shmup/Content/missileExplode.wav","C:/Users/law8/source/repos/shmup/shmup/Content/bin/DesktopGL/missileExplode.xnb","SoundEffectProcessor","SoundEffectContent",271326,180329,5.261633
+"C:/Users/law8/source/repos/shmup/shmup/Content/particle.png","C:/Users/law8/source/repos/shmup/shmup/Content/bin/DesktopGL/particle.xnb","TextureProcessor","Texture2DContent",2405,16469,0.0747496
+"C:/Users/law8/source/repos/shmup/shmup/Content/saucer.png","C:/Users/law8/source/repos/shmup/shmup/Content/bin/DesktopGL/saucer.xnb","TextureProcessor","Texture2DContent",1114,20249,0.0470526
+"C:/Users/law8/source/repos/shmup/shmup/Content/shipExplode.wav","C:/Users/law8/source/repos/shmup/shmup/Content/bin/DesktopGL/shipExplode.xnb","SoundEffectProcessor","SoundEffectContent",299744,299805,0.6632477
 "C:/Users/law8/source/repos/shmup/shmup/Content/UI Font.spritefont","C:/Users/law8/source/repos/shmup/shmup/Content/bin/DesktopGL/UI Font.xnb","FontDescriptionProcessor","SpriteFontContent",2008,37922,0.0557778

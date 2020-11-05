@@ -44,8 +44,8 @@ namespace shmup
                 new Rectangle(
                     (int)spritePos.X,
                     (int)spritePos.Y,
-                    (int)(spriteTexture.Width * (currentlife /maxlife)),
-                    (int)(spriteTexture.Height * (currentlife / maxlife))
+                    (int)(spriteTexture.Width * (currentlife /maxlife) * 2 ),
+                    (int)(spriteTexture.Height * (currentlife / maxlife) * 2)
                     ),               
                 particolour
                 );
